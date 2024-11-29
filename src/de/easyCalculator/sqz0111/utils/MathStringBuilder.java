@@ -27,7 +27,7 @@ public class MathStringBuilder {
         this.createPrefixIntro();
         builder.append(this.prefix);
         this.createBasicMathContent();
-        int index = 0;
+        int index = 1;
         for (String element : content) {
             builder.append(index++);
             builder.append("\t");
