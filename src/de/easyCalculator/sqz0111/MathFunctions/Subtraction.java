@@ -7,7 +7,7 @@ public class Subtraction implements Command {
     private double firstOperand = DEFAULT_VALUE;
     private double secondOperand = DEFAULT_VALUE;
     private double[] otherOperands;
-    public Subtractiondouble firstOperand, double secondOperand, double ...otherOperands) {
+    public Subtraction(double firstOperand, double secondOperand, double ...otherOperands) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
         this.otherOperands = otherOperands;
