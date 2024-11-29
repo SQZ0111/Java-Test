@@ -8,15 +8,20 @@ public class Addition implements Command {
     static double DEFAULT_VALUE = 0.0;
     private double firstOperand = DEFAULT_VALUE;
     private double secondOperand = DEFAULT_VALUE;
-    private double[] otherOperands;
-    public Addition(double firstOperand, double secondOperand, double ...otherOperands) {
+    private double result;
+    private ArrayList<Double> otherOperands;
+    public Addition(double firstOperand, double secondOperand, ArrayList<Double> otherOperands) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
         this.otherOperands = otherOperands;
 
     }
     @Override
-    public double executeCalculation(Object calculation) {
-        return 0.0;
+    public void executeCalculation(Object calculation) {
+        this.result =  firstOperand + secondOperand + otherOperands.stream().reduce(0.0, Double::sum);
+        printResult();
+    }
+    public void printResult() {
+        System.out.println("The Result equals: " + this.result);
     }
 }

@@ -1,9 +1,12 @@
 package de.easyCalculator.sqz0111.utils;
 
+import java.awt.*;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
 
 
 public class MathUserInteraction {
@@ -51,11 +54,11 @@ public class MathUserInteraction {
             String input = scan.nextLine().trim();
 
             Matcher commandMatcher = COMMAND_PATTERN.matcher(input);
-            Matcher numberMatcher = NUMBER_PATTERN.matcher(input);
 
             if (commandMatcher.matches()) {
                 stop = true;
-            } else if (numberMatcher.matches()) {
+
+            } else if (isNumeric(input)) {
                 operands.add(Double.parseDouble(input));
             } else {
                 System.out.println("Invalid input. Please enter a valid number or a command to stop.");
@@ -64,6 +67,19 @@ public class MathUserInteraction {
 
         System.out.println("Operands entered: " + operands);
         System.out.println("Operator chosen: " + operator);
+    }
+
+
+    private void callCalculation(String operator) throws InterruptedException {
+        List<Double> subList = operands.subList(1, operands.size());
+
+        ArrayList<Double> restOperands = new ArrayList<>(subList);
+        Thread.sleep(2000);
+        Executor calculationExecutor = new Executor(operands.get(0),operands.get(1),restOperands);
+
+        calculationExecutor.executeCommand(operator);
+
+
     }
 
 
@@ -76,6 +92,7 @@ public class MathUserInteraction {
             operator = processOperatorInput(scan);
 
             processNumberInput(scan);
+            callCalculation(operator);
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
