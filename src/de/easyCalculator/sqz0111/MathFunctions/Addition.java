@@ -8,7 +8,6 @@ public class Addition implements Command {
     static double DEFAULT_VALUE = 0.0;
     private double firstOperand = DEFAULT_VALUE;
     private double secondOperand = DEFAULT_VALUE;
-    private double result;
     private ArrayList<Double> otherOperands;
     public Addition(double firstOperand, double secondOperand, ArrayList<Double> otherOperands) {
         this.firstOperand = firstOperand;
@@ -18,10 +17,7 @@ public class Addition implements Command {
     }
     @Override
     public void executeCalculation(Object calculation) {
-        this.result =  firstOperand + secondOperand + otherOperands.stream().reduce(0.0, Double::sum);
-        printResult();
-    }
-    public void printResult() {
-        System.out.println("The Result equals: " + this.result);
+        double result = firstOperand + secondOperand + otherOperands.stream().reduce(0.0, Double::sum);
+        printResult(result);
     }
 }

@@ -71,13 +71,15 @@ public class MathUserInteraction {
 
 
     private void callCalculation(String operator) throws InterruptedException {
-        List<Double> subList = operands.subList(1, operands.size());
-
-        ArrayList<Double> restOperands = new ArrayList<>(subList);
-        Thread.sleep(2000);
-        Executor calculationExecutor = new Executor(operands.get(0),operands.get(1),restOperands);
-
-        calculationExecutor.executeCommand(operator);
+        if(operands.size() > 2) {
+            List<Double> subList = operands.subList(2, operands.size());
+            ArrayList<Double> restOperands = new ArrayList<>(subList);
+            Executor calculationExecutor = new Executor(operands.get(0),operands.get(1),restOperands);
+            calculationExecutor.executeCommand(operator);
+        } else {
+            Executor calculationExecutor = new Executor(operands.get(0), operands.get(1),new ArrayList<>());
+            calculationExecutor.executeCommand(operator);
+        }
 
 
     }

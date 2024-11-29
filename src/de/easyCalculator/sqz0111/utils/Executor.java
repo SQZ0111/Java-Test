@@ -20,25 +20,19 @@ public class Executor {
     private static final Pattern SUBTRACT_PATTERN = Pattern.compile("(sub|subtract|subtrahieren|minus|-)", Pattern.CASE_INSENSITIVE);
     private static final Pattern MULTIPLY_PATTERN = Pattern.compile("(mul|multiply|multiplizieren|mal|\\*)", Pattern.CASE_INSENSITIVE);
     private static final Pattern DIVIDE_PATTERN = Pattern.compile("(div|divide|dividieren|teilen|/)", Pattern.CASE_INSENSITIVE);
-    private double firstOperand;
-    private double secondOperand;
-    private ArrayList<Double> otherOperands;
     private ArrayList<CommandPattern> allPatterns = new ArrayList<CommandPattern>();
 
 
 
     public Executor(double firstOperand, double secondOperand, ArrayList<Double> otherOperands) {
-        this.firstOperand = firstOperand;
-        this.secondOperand = secondOperand;
-        this.otherOperands = otherOperands;
-        commands.put("add",new Addition(this.firstOperand,this.secondOperand,this.otherOperands));
-        commands.put("subtract",new Subtraction(this.firstOperand,this.secondOperand,this.otherOperands));
-        commands.put("multiply",new Multiplication(this.firstOperand,this.secondOperand,this.otherOperands));
-        commands.put("divide",new Division(this.firstOperand,this.secondOperand,this.otherOperands));
-        allPatterns.add(new CommandPattern(new Addition(this.firstOperand,this.secondOperand,this.otherOperands),ADD_PATTERN));
-        allPatterns.add(new CommandPattern(new Subtraction(this.firstOperand,this.secondOperand,this.otherOperands),SUBTRACT_PATTERN));
-        allPatterns.add(new CommandPattern(new Multiplication(this.firstOperand,this.secondOperand,this.otherOperands),MULTIPLY_PATTERN));
-        allPatterns.add(new CommandPattern(new Division(this.firstOperand,this.secondOperand,this.otherOperands),DIVIDE_PATTERN));
+        commands.put("add",new Addition(firstOperand, secondOperand, otherOperands));
+        commands.put("subtract",new Subtraction(firstOperand, secondOperand, otherOperands));
+        commands.put("multiply",new Multiplication(firstOperand, secondOperand, otherOperands));
+        commands.put("divide",new Division(firstOperand, secondOperand, otherOperands));
+        allPatterns.add(new CommandPattern(new Addition(firstOperand, secondOperand, otherOperands),ADD_PATTERN));
+        allPatterns.add(new CommandPattern(new Subtraction(firstOperand, secondOperand, otherOperands),SUBTRACT_PATTERN));
+        allPatterns.add(new CommandPattern(new Multiplication(firstOperand, secondOperand, otherOperands),MULTIPLY_PATTERN));
+        allPatterns.add(new CommandPattern(new Division(firstOperand, secondOperand, otherOperands),DIVIDE_PATTERN));
 
     }
 

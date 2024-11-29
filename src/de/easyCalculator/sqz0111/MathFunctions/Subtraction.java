@@ -9,7 +9,6 @@ public class Subtraction implements Command {
     private double firstOperand = DEFAULT_VALUE;
     private double secondOperand = DEFAULT_VALUE;
     private ArrayList<Double> otherOperands;
-    private double result;
     public Subtraction(double firstOperand, double secondOperand, ArrayList<Double> otherOperands) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
@@ -18,6 +17,7 @@ public class Subtraction implements Command {
     }
     @Override
     public void executeCalculation(Object calculation) {
-
+        double result = firstOperand - otherOperands.stream().reduce(secondOperand, Double::sum);
+        printResult(result);
     }
 }

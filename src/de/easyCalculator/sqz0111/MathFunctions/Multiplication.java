@@ -9,7 +9,6 @@ public class Multiplication implements Command {
     private double firstOperand = DEFAULT_VALUE;
     private double secondOperand = DEFAULT_VALUE;
     private ArrayList<Double> otherOperands;
-    private double result;
     public Multiplication(double firstOperand, double secondOperand, ArrayList<Double> otherOperands) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
@@ -18,5 +17,7 @@ public class Multiplication implements Command {
     }
     @Override
     public void executeCalculation(Object calculation) {
+        double result = firstOperand * otherOperands.stream().reduce(secondOperand, (acc, next) -> secondOperand * next);
+        printResult(result);
     }
 }
